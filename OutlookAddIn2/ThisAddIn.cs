@@ -34,14 +34,12 @@ namespace OutlookAddIn2
             Outlook.MailItem mail = (Outlook.MailItem)Item;
             if (Item != null)
             {
-
                     if (mail.MessageClass == "IPM.Note" &&
                           mail.Body.ToUpper().Contains(filter.ToUpper()))
                     {
-                        mail.Move(outlookNameSpace.GetDefaultFolder(
-                            Microsoft.Office.Interop.Outlook.
-                            OlDefaultFolders.olFolderJunk));
-                        
+                        String temp = mail.Body;
+                        String newBody = temp.Replace("http", "[Disabled]");
+                        mail.Body = newBody;                        
                     }
                 
                
